@@ -1,6 +1,6 @@
 ## Demystifying Datapath Accelerator Enhanced Off-path SmartNIC [ICNP24]
 
-A framework to understand BlueField-3 Datapath Accelerator(DPA) performance. This is the source code for our ICNP24 paper.
+A framework to understand BlueField-3 Datapath Accelerator(DPA) performance. This is the source code for our [ICNP24 paper](https://arxiv.org/abs/2402.03041).
 
 ## Required hardware and software
 
