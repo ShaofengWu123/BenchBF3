@@ -333,7 +333,7 @@ __dpa_rpc__ uint64_t dpa_send_mt_deivce_first_packet(uint64_t __attribute__((__u
             continue;
         }
         if (dev_ctx->sq_on_host) {
-            dev_ctx->host_sq_ctx.dpa_tx_buff = get_host_buffer_with_dtctx(dtctx, dev_ctx->host_sq_ctx.sq_window_id, dev_ctx->host_sq_ctx.rkey, dev_ctx->host_sq_ctx.host_tx_buff);
+            dev_ctx->host_sq_ctx.dpa_tx_buff = get_host_buffer_with_dtctx(dev_ctx->host_sq_ctx.sq_window_id, dev_ctx->host_sq_ctx.rkey, dev_ctx->host_sq_ctx.host_tx_buff);
 
             for (size_t entry = 0;entry < LOG2VALUE(LOG_SQ_RING_DEPTH);entry++) {
                 sq_data = get_next_send_buf(&dev_ctx->dt_ctx, LOG_WQ_DATA_ENTRY_BSIZE);
@@ -381,14 +381,14 @@ dpa_send_mt_device_event_handler(uint64_t index) {
 
     // this is useless but a simple way to init dpa_rx_buff
     if (rq_on_host) {
-        dev_ctx->host_rq_ctx.dpa_rx_buff = get_host_buffer_with_dtctx(dtctx, dev_ctx->host_rq_ctx.rq_window_id, dev_ctx->host_rq_ctx.rkey, dev_ctx->host_rq_ctx.host_rx_buff);
+        dev_ctx->host_rq_ctx.dpa_rx_buff = get_host_buffer_with_dtctx(dev_ctx->host_rq_ctx.rq_window_id, dev_ctx->host_rq_ctx.rkey, dev_ctx->host_rq_ctx.host_rx_buff);
     } else {
         // in this situation, we set dpa_buff to host_buff, to prevent misuse of receive_packet_host
         dev_ctx->host_rq_ctx.dpa_rx_buff = (flexio_uintptr_t)dev_ctx->host_rq_ctx.host_rx_buff;
     }
 
     if (sq_on_host) {
-        dev_ctx->host_sq_ctx.dpa_tx_buff = get_host_buffer_with_dtctx(dtctx, dev_ctx->host_sq_ctx.sq_window_id, dev_ctx->host_sq_ctx.rkey, dev_ctx->host_sq_ctx.host_tx_buff);
+        dev_ctx->host_sq_ctx.dpa_tx_buff = get_host_buffer_with_dtctx(dev_ctx->host_sq_ctx.sq_window_id, dev_ctx->host_sq_ctx.rkey, dev_ctx->host_sq_ctx.host_tx_buff);
     } else {
         dev_ctx->host_sq_ctx.dpa_tx_buff = (flexio_uintptr_t)dev_ctx->host_sq_ctx.host_tx_buff;
     }
