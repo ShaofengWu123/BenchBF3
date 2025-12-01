@@ -42,7 +42,7 @@ flexio_uintptr_t get_host_buffer(uint32_t window_id, uint32_t mkey, void *haddr)
 	return host_buffer;
 }
 
-flexio_uintptr_t get_host_buffer_with_dtctx(struct flexio_dev_thread_ctx *dtctx, uint32_t window_id, uint32_t mkey, void *haddr) {
+flexio_uintptr_t get_host_buffer_with_dtctx(uint32_t window_id, uint32_t mkey, void *haddr) {
 	(void)haddr;
 
 	flexio_uintptr_t host_buffer = 0;
