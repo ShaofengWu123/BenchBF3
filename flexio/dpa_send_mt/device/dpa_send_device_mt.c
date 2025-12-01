@@ -323,7 +323,7 @@ dpa_send_mt_device_init(uint64_t data) {
     return 0;
 }
 
-__dpa_rpc__ uint64_t dpa_send_mt_deivce_first_packet(uint64_t __unused dummy) {
+__dpa_rpc__ uint64_t dpa_send_mt_deivce_first_packet(uint64_t __attribute__((__unused__)) dummy) {
     struct flexio_dev_thread_ctx *dtctx;
     flexio_dev_get_thread_ctx(&dtctx);
     for (size_t i = 0;i < MAX_THREADS;i++) {
@@ -355,7 +355,7 @@ __dpa_rpc__ uint64_t dpa_send_mt_deivce_first_packet(uint64_t __unused dummy) {
     return 0;
 }
 
-__dpa_rpc__ uint64_t dpa_send_mt_stop(uint64_t __unused dummy) {
+__dpa_rpc__ uint64_t dpa_send_mt_stop(uint64_t __attribute__((__unused__)) dummy) {
     is_stop = 1;
     return 0;
 }
