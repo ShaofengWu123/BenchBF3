@@ -44,8 +44,8 @@ add_definitions(-DDOCA_ALLOW_EXPERIMENTAL_API)
 
 find_package(PkgConfig REQUIRED)
 # pkg_check_modules(DOCA IMPORTED_TARGET doca)
-pkg_check_modules(DOCA IMPORTED_TARGET doca-dpa)
-pkg_check_modules(DOCA IMPORTED_TARGET doca-common)
+pkg_check_modules(DOCADPA IMPORTED_TARGET doca-dpa)
+pkg_check_modules(DOCACOMMON IMPORTED_TARGET doca-common)
 pkg_check_modules(LIBDPDK IMPORTED_TARGET libdpdk)
 pkg_check_modules(LIBFLEXIO IMPORTED_TARGET libflexio)
 
@@ -135,7 +135,7 @@ set(UTILSOURCES
 file(GLOB WRAPPERSOURCES ${CMAKE_SOURCE_DIR}/wrapper/*.cpp)
 list(APPEND UTILSOURCES ${WRAPPERSOURCES})
 
-set(LIBRARIES ${LIBRARIES} PkgConfig::DOCA PkgConfig::LIBDPDK PkgConfig::LIBFLEXIO nlohmann_json::nlohmann_json ${Protobuf_LITE_LIBRARIES} gflags numa hdr_histogram_static z lz4)
+set(LIBRARIES ${LIBRARIES} PkgConfig::DOCACOMMON PkgConfig::DOCADPA PkgConfig::LIBDPDK PkgConfig::LIBFLEXIO nlohmann_json::nlohmann_json ${Protobuf_LITE_LIBRARIES} gflags numa hdr_histogram_static z lz4)
 ## used for cache_invalid
 set(LIBRARIES ${LIBRARIES} ibverbs mlx5)
 
