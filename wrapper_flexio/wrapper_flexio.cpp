@@ -94,7 +94,7 @@ namespace FLEX {
     }
 
     void Context::create_process(flexio_app *app_device) {
-        flexio_process_attr process_attr = { nullptr, 0 };
+        flexio_process_attr process_attr = { nullptr, 0 , ""};
         flexio_status ret = flexio_process_create(inner_ibv_context, app_device, &process_attr, &process);
         Assert(ret == FLEXIO_STATUS_SUCCESS)
     }
