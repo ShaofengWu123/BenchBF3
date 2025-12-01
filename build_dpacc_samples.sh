@@ -28,4 +28,5 @@ ${DPACC} ${SOURCE_FILE} -o "${BUILD_DIR}/${APP_NAME}.a" \
     --devicecc-options="${DEVICE_OPTIONS}" \
     --device-libs="-L${DOCA_DEV_LIB_DIR} ${DOCA_DEV_USER_LIB}" \
 		--app-name="${APP_NAME}"
+    --mcpu==nv-dpa-bf3
 		# --keep
