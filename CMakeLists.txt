@@ -132,8 +132,8 @@ set(UTILSOURCES
         ${CMAKE_SOURCE_DIR}/utils/dpdk/offload_rules.c
         ${CMAKE_SOURCE_DIR}/utils/dpdk/dpdk_utils.c
 )
-file(GLOB WRAPPERSOURCES ${CMAKE_SOURCE_DIR}/wrapper/*.cpp)
-list(APPEND UTILSOURCES ${WRAPPERSOURCES})
+# file(GLOB WRAPPERSOURCES ${CMAKE_SOURCE_DIR}/wrapper/*.cpp)
+# list(APPEND UTILSOURCES ${WRAPPERSOURCES})
 
 set(LIBRARIES ${LIBRARIES} PkgConfig::DOCACOMMON PkgConfig::DOCADPA PkgConfig::LIBDPDK PkgConfig::LIBFLEXIO nlohmann_json::nlohmann_json ${Protobuf_LITE_LIBRARIES} gflags numa hdr_histogram_static z lz4)
 ## used for cache_invalid
