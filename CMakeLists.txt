@@ -92,7 +92,7 @@ include_directories("${CMAKE_SOURCE_DIR}/utils/network")
 include_directories("${CMAKE_SOURCE_DIR}/utils/dpdk")
 
 #include: wrapper
-include_directories("${CMAKE_SOURCE_DIR}/wrapper")
+# include_directories("${CMAKE_SOURCE_DIR}/wrapper")
 
 include_directories("${CMAKE_SOURCE_DIR}/wrapper_flexio")
 
