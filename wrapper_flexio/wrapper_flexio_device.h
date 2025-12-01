@@ -36,7 +36,7 @@ static inline void sleep_(uint64_t x) {
 }
 
 flexio_uintptr_t get_host_buffer(uint32_t window_id, uint32_t mkey, void *haddr);
-flexio_uintptr_t get_host_buffer_with_dtctx(struct flexio_dev_thread_ctx *dtctx, uint32_t window_id, uint32_t mkey, void *haddr);
+flexio_uintptr_t get_host_buffer_with_dtctx(uint32_t window_id, uint32_t mkey, void *haddr);
 
 /* CQ Context */
 struct cq_ctx_t {
