@@ -34,10 +34,10 @@ flexio_uintptr_t get_host_buffer(uint32_t window_id, uint32_t mkey, void *haddr)
 	flexio_dev_status_t ret;
 	Assert(flexio_dev_get_thread_ctx(&dtctx) >= 0);
 
-	ret = flexio_dev_window_config(dtctx, (uint16_t)window_id, mkey);
+	ret = flexio_dev_window_config(FLEXIO_DEV_WINDOW_ENTITY_0, (uint16_t)window_id, mkey);
 	Assert(ret == FLEXIO_DEV_STATUS_SUCCESS);
 
-	ret = flexio_dev_window_ptr_acquire(dtctx, (uint64_t)haddr, &host_buffer);
+	ret = flexio_dev_window_ptr_acquire(FLEXIO_DEV_WINDOW_ENTITY_0, (uint64_t)haddr, &host_buffer);
 	Assert(ret == FLEXIO_DEV_STATUS_SUCCESS);
 	return host_buffer;
 }
@@ -48,10 +48,10 @@ flexio_uintptr_t get_host_buffer_with_dtctx(struct flexio_dev_thread_ctx *dtctx,
 	flexio_uintptr_t host_buffer = 0;
 	flexio_dev_status_t ret;
 
-	ret = flexio_dev_window_config(dtctx, (uint16_t)window_id, mkey);
+	ret = flexio_dev_window_config(FLEXIO_DEV_WINDOW_ENTITY_0, (uint16_t)window_id, mkey);
 	Assert(ret == FLEXIO_DEV_STATUS_SUCCESS);
 
-	ret = flexio_dev_window_ptr_acquire(dtctx, (uint64_t)haddr, &host_buffer);
+	ret = flexio_dev_window_ptr_acquire(FLEXIO_DEV_WINDOW_ENTITY_0, (uint64_t)haddr, &host_buffer);
 	Assert(ret == FLEXIO_DEV_STATUS_SUCCESS);
 	return host_buffer;
 }
