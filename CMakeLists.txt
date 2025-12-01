@@ -124,7 +124,7 @@ include_directories(${CMAKE_SOURCE_DIR}/third_party/atomic_queue/include)
 # endif()
 
 set(UTILSOURCES
-        ${CMAKE_SOURCE_DIR}/utils/utils_common.cpp
+        # ${CMAKE_SOURCE_DIR}/utils/utils_common.cpp
         ${CMAKE_SOURCE_DIR}/utils/hdr_histogram.cpp
         ${CMAKE_SOURCE_DIR}/utils/numautil.cpp
         ${CMAKE_SOURCE_DIR}/utils/gflags_common.cpp
