@@ -41,36 +41,36 @@ public:
     void clean_all() const;
 };
 
-class doca_conn_info {
-public:
-    std::vector<std::string> exports;
-    std::vector<std::pair<uint64_t, size_t>> buffers;
+// class doca_conn_info {
+// public:
+//     std::vector<std::string> exports;
+//     std::vector<std::pair<uint64_t, size_t>> buffers;
 
-    static dma_connect::doca_conn_info to_protobuf(const doca_conn_info &info) {
-        dma_connect::doca_conn_info conn_info_inner;
-        for (auto &e : info.exports) {
-            conn_info_inner.add_exports(e);
-        }
+//     static dma_connect::doca_conn_info to_protobuf(const doca_conn_info &info) {
+//         dma_connect::doca_conn_info conn_info_inner;
+//         for (auto &e : info.exports) {
+//             conn_info_inner.add_exports(e);
+//         }
 
-        for (auto &p : info.buffers) {
-            conn_info_inner.add_buffers_ptr(p.first);
-            conn_info_inner.add_buffers_size(p.second);
-        }
-        return conn_info_inner;
-    }
+//         for (auto &p : info.buffers) {
+//             conn_info_inner.add_buffers_ptr(p.first);
+//             conn_info_inner.add_buffers_size(p.second);
+//         }
+//         return conn_info_inner;
+//     }
 
-    static doca_conn_info from_protobuf(const dma_connect::doca_conn_info &info) {
-        doca_conn_info conn_info_inner;
-        for (int i = 0; i < info.exports_size(); i++) {
-            conn_info_inner.exports.push_back(info.exports(i));
-        }
+//     static doca_conn_info from_protobuf(const dma_connect::doca_conn_info &info) {
+//         doca_conn_info conn_info_inner;
+//         for (int i = 0; i < info.exports_size(); i++) {
+//             conn_info_inner.exports.push_back(info.exports(i));
+//         }
 
-        for (int i = 0; i < info.buffers_ptr_size(); i++) {
-            conn_info_inner.buffers.emplace_back(info.buffers_ptr(i), info.buffers_size(i));
-        }
-        return conn_info_inner;
-    }
-};
+//         for (int i = 0; i < info.buffers_ptr_size(); i++) {
+//             conn_info_inner.buffers.emplace_back(info.buffers_ptr(i), info.buffers_size(i));
+//         }
+//         return conn_info_inner;
+//     }
+// };
 
 
 /*
