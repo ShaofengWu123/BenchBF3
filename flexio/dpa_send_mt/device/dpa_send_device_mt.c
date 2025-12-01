@@ -182,7 +182,8 @@ static void prepare_packet_host(void *sq_data, size_t thread_index) {
 }
 
 
-static void __unused receive_packet_on_dpa(struct device_context *dev_ctx) {
+static void __unused
+receive_packet_on_dpa(struct device_context *dev_ctx) {
     uint32_t data_sz;
     char *rq_data;
 
@@ -190,7 +191,7 @@ static void __unused receive_packet_on_dpa(struct device_context *dev_ctx) {
 
     /* Extract relevant data from CQE */
     rq_data = receive_packet(&dev_ctx->rqcq_ctx, &dev_ctx->rq_ctx, &data_sz);
-    
+    (void)rq_data;
     // cycle -= *(uint64_t *)(rq_data + hdr_size);
     // LOG_I("r: %u %ld %ld\n", data_sz, __dpa_thread_cycles(), *(uint64_t *)(rq_data + sizeof(struct ether_hdr)));
     if (data_sz != pkt_size) {
@@ -225,7 +226,8 @@ static void send_packet_dpa(struct flexio_dev_thread_ctx *dtctx, struct device_c
     finish_send_packet(&dev_ctx->sq_ctx);
 }
 
-static void __unused receive_packet_on_host(struct device_context *dev_ctx) {
+static void __unused
+receive_packet_on_host(struct device_context *dev_ctx) {
     uint32_t data_sz;
     char *rq_data;
 
