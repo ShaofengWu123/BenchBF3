@@ -177,7 +177,7 @@ inline static void prepare_send_packet(struct sq_ctx_t *sq_ctx, void *data_addr,
 }
 
 inline static void
-finish_send_packet(struct flexio_dev_thread_ctx *dtctx, struct sq_ctx_t *sq_ctx) {
+finish_send_packet(struct sq_ctx_t *sq_ctx) {
     register uint32_t sq_number = sq_ctx->sq_number;
     register uint32_t sq_pi = ++sq_ctx->sq_pi;
     __dpa_thread_memory_writeback();
@@ -186,7 +186,7 @@ finish_send_packet(struct flexio_dev_thread_ctx *dtctx, struct sq_ctx_t *sq_ctx)
 }
 
 inline static void
-finish_send_packet_batch(struct flexio_dev_thread_ctx *dtctx, struct sq_ctx_t *sq_ctx, size_t batch_size) {
+finish_send_packet_batch(struct sq_ctx_t *sq_ctx, size_t batch_size) {
     register uint32_t sq_number = sq_ctx->sq_number;
     sq_ctx->sq_pi += batch_size;
     register uint32_t sq_pi = sq_ctx->sq_pi;
@@ -196,7 +196,7 @@ finish_send_packet_batch(struct flexio_dev_thread_ctx *dtctx, struct sq_ctx_t *s
 }
 
 inline static void
-finish_send_packet_host(struct flexio_dev_thread_ctx *dtctx, struct sq_ctx_t *sq_ctx) {
+finish_send_packet_host(struct sq_ctx_t *sq_ctx) {
     register uint32_t sq_number = sq_ctx->sq_number;
     register uint32_t sq_pi = ++sq_ctx->sq_pi;
     __dpa_thread_memory_writeback();
@@ -206,7 +206,7 @@ finish_send_packet_host(struct flexio_dev_thread_ctx *dtctx, struct sq_ctx_t *sq
 }
 
 inline static void
-finish_send_packet_host_batch(struct flexio_dev_thread_ctx *dtctx, struct sq_ctx_t *sq_ctx, size_t batch_size) {
+finish_send_packet_host_batch(struct sq_ctx_t *sq_ctx, size_t batch_size) {
     register uint32_t sq_number = sq_ctx->sq_number;
     sq_ctx->sq_pi += batch_size;
     register uint32_t sq_pi = sq_ctx->sq_pi;

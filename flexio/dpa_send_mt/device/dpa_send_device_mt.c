@@ -152,7 +152,7 @@ static void prepare_packet(void *sq_data, size_t thread_index, struct flexio_dev
     // memcpy(sq_data, eth_hdr, hdr_size);
 }
 
-static void prepare_packet_host(void *sq_data, size_t thread_index, struct flexio_dev_thread_ctx *dtctx) {
+static void prepare_packet_host(void *sq_data, size_t thread_index) {
     struct udp_packet udp_pkt;
     udp_pkt.eth_hdr.src_addr = SRC_ADDR;
     udp_pkt.eth_hdr.src_addr.addr_bytes[5] += thread_index;
@@ -190,7 +190,7 @@ static void __unused receive_packet_on_dpa(struct device_context *dev_ctx) {
 
     /* Extract relevant data from CQE */
     rq_data = receive_packet(&dev_ctx->rqcq_ctx, &dev_ctx->rq_ctx, &data_sz);
-    (void)rq_data;
+    
     // cycle -= *(uint64_t *)(rq_data + hdr_size);
     // LOG_I("r: %u %ld %ld\n", data_sz, __dpa_thread_cycles(), *(uint64_t *)(rq_data + sizeof(struct ether_hdr)));
     if (data_sz != pkt_size) {
@@ -222,7 +222,7 @@ static void send_packet_dpa(struct flexio_dev_thread_ctx *dtctx, struct device_c
     // *data_ptr = __dpa_thread_cycles();
     // LOG_I("s: %ld\n", *data_ptr);
     dev_ctx->credits--;
-    finish_send_packet(dtctx, &dev_ctx->sq_ctx);
+    finish_send_packet(&dev_ctx->sq_ctx);
 }
 
 static void __unused receive_packet_on_host(struct device_context *dev_ctx) {
@@ -268,7 +268,7 @@ static void send_packet_on_host(struct flexio_dev_thread_ctx *dtctx, struct devi
     // *(data_ptr + 1) = ++dev_ctx->send_index;
     // *data_ptr = __dpa_thread_cycles();
     dev_ctx->credits--;
-    finish_send_packet_host(dtctx, &dev_ctx->sq_ctx);
+    finish_send_packet_host(&dev_ctx->sq_ctx);
 }
 
 
@@ -335,7 +335,7 @@ __dpa_rpc__ uint64_t dpa_send_mt_deivce_first_packet() {
 
             for (size_t entry = 0;entry < LOG2VALUE(LOG_SQ_RING_DEPTH);entry++) {
                 sq_data = get_next_send_buf(&dev_ctx->dt_ctx, LOG_WQ_DATA_ENTRY_BSIZE);
-                prepare_packet_host(sq_data, i, dtctx);
+                prepare_packet_host(sq_data, i);
             }
 #if TO_DPA_DST
             send_packet_on_host(dtctx, dev_ctx);
