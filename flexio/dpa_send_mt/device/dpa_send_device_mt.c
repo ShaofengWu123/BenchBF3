@@ -182,7 +182,7 @@ static void prepare_packet_host(void *sq_data, size_t thread_index) {
 }
 
 
-static void __unused
+__attribute__((unused)) static void
 receive_packet_on_dpa(struct device_context *dev_ctx) {
     uint32_t data_sz;
     char *rq_data;
@@ -204,7 +204,7 @@ receive_packet_on_dpa(struct device_context *dev_ctx) {
     dev_ctx->credits++;
 }
 
-static void send_packet_dpa(struct flexio_dev_thread_ctx *dtctx, struct device_context *dev_ctx) {
+static void send_packet_dpa(struct device_context *dev_ctx) {
     char *sq_data = get_next_send_buf(&dev_ctx->dt_ctx, LOG_WQ_DATA_ENTRY_BSIZE);
     struct ether_hdr *eth_hdr = (struct ether_hdr *)(sq_data);
     eth_hdr->src_addr = SRC_ADDR;
@@ -226,7 +226,7 @@ static void send_packet_dpa(struct flexio_dev_thread_ctx *dtctx, struct device_c
     finish_send_packet(&dev_ctx->sq_ctx);
 }
 
-static void __unused
+__attribute__((unused)) static void
 receive_packet_on_host(struct device_context *dev_ctx) {
     uint32_t data_sz;
     char *rq_data;
@@ -250,7 +250,7 @@ receive_packet_on_host(struct device_context *dev_ctx) {
     dev_ctx->credits++;
 }
 
-static void send_packet_on_host(struct flexio_dev_thread_ctx *dtctx, struct device_context *dev_ctx) {
+static void send_packet_on_host(struct device_context *dev_ctx) {
     char *sq_data = get_next_send_buf(&dev_ctx->dt_ctx, LOG_WQ_DATA_ENTRY_BSIZE);
     char *sq_data_dpa = host_sq_addr_to_dpa_addr(sq_data, &dev_ctx->host_sq_ctx);
 
@@ -473,6 +473,6 @@ dpa_send_mt_device_event_handler(uint64_t index) {
     flexio_dev_print("thread %ld end\n", index);
 
     __dpa_thread_fence(__DPA_MEMORY, __DPA_W, __DPA_W);
-    flexio_dev_cq_arm(dtctx, dev_ctx->rqcq_ctx.cq_idx, dev_ctx->rqcq_ctx.cq_number);
+    flexio_dev_cq_arm(dev_ctx->rqcq_ctx.cq_idx, dev_ctx->rqcq_ctx.cq_number);
     flexio_dev_thread_reschedule();
 }
