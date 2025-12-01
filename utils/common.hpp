@@ -16,7 +16,8 @@
 #include <doca_log.h>
 #include <doca_mmap.h>
 #include <doca_argp.h>
-#include <doca_comm_channel.h>
+// #include <doca_comm_channel.h>
+#include <doca_comch.h>
 #include <doca_sync_event.h>
 #include <doca_types.h>
 #include <doca_dpdk.h>
