@@ -21,7 +21,7 @@
 #include "wrapper_interface.h"
 #include "wrapper_mmap.h"
 #include "wrapper_pe.h"
-#include "proto/dma_connect.pb.h"
+// #include "proto/dma_connect.pb.h"
 
 #define PCI_ADDR_SIZE 8 /* Null terminator included */
 
