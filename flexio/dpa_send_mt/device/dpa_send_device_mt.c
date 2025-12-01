@@ -178,12 +178,11 @@ static void prepare_packet_host(void *sq_data, size_t thread_index, struct flexi
     udp_pkt.udp_hdr.src_port = cpu_to_be16(thread_index);
     udp_pkt.udp_hdr.dst_port = cpu_to_be16(thread_index);
 
-    flexio_dev_window_copy_to_host(dtctx, (uint64_t)sq_data, &udp_pkt, sizeof(udp_pkt));
+    flexio_dev_window_copy_to_host(FLEXIO_DEV_WINDOW_ENTITY_0, (uint64_t)sq_data, &udp_pkt, sizeof(udp_pkt));
 }
 
 
-static void __unused
-receive_packet_on_dpa(struct device_context *dev_ctx) {
+static void __unused receive_packet_on_dpa(struct device_context *dev_ctx) {
     uint32_t data_sz;
     char *rq_data;
 
@@ -226,8 +225,7 @@ static void send_packet_dpa(struct flexio_dev_thread_ctx *dtctx, struct device_c
     finish_send_packet(dtctx, &dev_ctx->sq_ctx);
 }
 
-static void __unused
-receive_packet_on_host(struct device_context *dev_ctx) {
+static void __unused receive_packet_on_host(struct device_context *dev_ctx) {
     uint32_t data_sz;
     char *rq_data;
 
@@ -323,7 +321,7 @@ dpa_send_mt_device_init(uint64_t data) {
     return 0;
 }
 
-__dpa_rpc__ uint64_t dpa_send_mt_deivce_first_packet(uint64_t __unused dummy) {
+__dpa_rpc__ uint64_t dpa_send_mt_deivce_first_packet() {
     struct flexio_dev_thread_ctx *dtctx;
     flexio_dev_get_thread_ctx(&dtctx);
     for (size_t i = 0;i < MAX_THREADS;i++) {
@@ -355,7 +353,7 @@ __dpa_rpc__ uint64_t dpa_send_mt_deivce_first_packet(uint64_t __unused dummy) {
     return 0;
 }
 
-__dpa_rpc__ uint64_t dpa_send_mt_stop(uint64_t __unused dummy) {
+__dpa_rpc__ uint64_t dpa_send_mt_stop() {
     is_stop = 1;
     return 0;
 }

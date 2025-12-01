@@ -181,7 +181,7 @@ finish_send_packet(struct flexio_dev_thread_ctx *dtctx, struct sq_ctx_t *sq_ctx)
     register uint32_t sq_number = sq_ctx->sq_number;
     register uint32_t sq_pi = ++sq_ctx->sq_pi;
     __dpa_thread_memory_writeback();
-    flexio_dev_qp_sq_ring_db(dtctx, sq_pi, sq_number);
+    flexio_dev_qp_sq_ring_db(sq_pi, sq_number);
     // __dpa_thread_fence(__DPA_MEMORY, __DPA_W, __DPA_W);
 }
 
@@ -191,7 +191,7 @@ finish_send_packet_batch(struct flexio_dev_thread_ctx *dtctx, struct sq_ctx_t *s
     sq_ctx->sq_pi += batch_size;
     register uint32_t sq_pi = sq_ctx->sq_pi;
     __dpa_thread_memory_writeback();
-    flexio_dev_qp_sq_ring_db(dtctx, sq_pi, sq_number);
+    flexio_dev_qp_sq_ring_db(sq_pi, sq_number);
     // __dpa_thread_fence(__DPA_MEMORY, __DPA_W, __DPA_W);
 }
 
@@ -201,7 +201,7 @@ finish_send_packet_host(struct flexio_dev_thread_ctx *dtctx, struct sq_ctx_t *sq
     register uint32_t sq_pi = ++sq_ctx->sq_pi;
     __dpa_thread_memory_writeback();
     __dpa_thread_window_writeback();
-    flexio_dev_qp_sq_ring_db(dtctx, sq_pi, sq_number);
+    flexio_dev_qp_sq_ring_db(sq_pi, sq_number);
     // __dpa_thread_fence(__DPA_MEMORY, __DPA_W, __DPA_W);
 }
 
@@ -212,7 +212,7 @@ finish_send_packet_host_batch(struct flexio_dev_thread_ctx *dtctx, struct sq_ctx
     register uint32_t sq_pi = sq_ctx->sq_pi;
     __dpa_thread_memory_writeback();
     __dpa_thread_window_writeback();
-    flexio_dev_qp_sq_ring_db(dtctx, sq_pi, sq_number);
+    flexio_dev_qp_sq_ring_db(sq_pi, sq_number);
     // __dpa_thread_fence(__DPA_MEMORY, __DPA_W, __DPA_W);
 }
 

@@ -17,7 +17,7 @@ DEVICE_OPTIONS="${DEV_CC_FLAGS},${DEV_INC_DIR},${DEV_USER_INC_DIR}"
 
 DOCA_DEV_LIB_DIR="/opt/mellanox/doca/lib/$(arch)-linux-gnu/"
 # Host flags
-HOST_OPTIONS="-Wno-deprecated-declarations"
+# HOST_OPTIONS="-Wno-deprecated-declarations"
 
 mkdir -p "${BUILD_DIR}"
 

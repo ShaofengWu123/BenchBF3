@@ -181,7 +181,7 @@ add_subdirectory(${CMAKE_SOURCE_DIR}/third_party/HdrHistogram)
 
 add_subdirectory(${CMAKE_SOURCE_DIR}/flexio/dpa_send_mt)
 # add_subdirectory(${CMAKE_SOURCE_DIR}/flexio/dpa_send_ntp)
-add_subdirectory(${CMAKE_SOURCE_DIR}/flexio/dpa_send)
+# add_subdirectory(${CMAKE_SOURCE_DIR}/flexio/dpa_send)
 # add_subdirectory(${CMAKE_SOURCE_DIR}/flexio/dpa_refactor_mt)
 # add_subdirectory(${CMAKE_SOURCE_DIR}/flexio/dpa_refactor_workingset)
 # add_subdirectory(${CMAKE_SOURCE_DIR}/flexio/dpa_refactor_random_access)
