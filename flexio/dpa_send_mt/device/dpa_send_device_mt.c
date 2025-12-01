@@ -340,7 +340,7 @@ __dpa_rpc__ uint64_t dpa_send_mt_deivce_first_packet() {
                 prepare_packet_host(sq_data, i);
             }
 #if TO_DPA_DST
-            send_packet_on_host(dtctx, dev_ctx);
+            send_packet_on_host(dev_ctx);
 #endif
         } else {
             for (size_t entry = 0;entry < LOG2VALUE(LOG_SQ_RING_DEPTH);entry++) {
@@ -348,7 +348,7 @@ __dpa_rpc__ uint64_t dpa_send_mt_deivce_first_packet() {
                 prepare_packet(sq_data, i, dtctx);
             }
 #if TO_DPA_DST
-            send_packet_dpa(dtctx, dev_ctx);
+            send_packet_dpa(dev_ctx);
 #endif
         }
     }
@@ -398,12 +398,12 @@ dpa_send_mt_device_event_handler(uint64_t index) {
     if (sq_on_host) {
         while (!is_stop) {
 #if ONLY_SEND
-            send_packet_on_host(dtctx, dev_ctx);
+            send_packet_on_host(dev_ctx);
 #else
             // if (dev_ctx->credits) {
             //     send_packet_on_host(dtctx, dev_ctx);
             // }
-            send_packet_on_host(dtctx, dev_ctx);
+            send_packet_on_host(dev_ctx);
             while (flexio_dev_cqe_get_owner(dev_ctx->rqcq_ctx.cqe) != dev_ctx->rqcq_ctx.cq_hw_owner_bit) {
                 receive_packet_on_host(dev_ctx);
                 step_rq(&dev_ctx->rq_ctx);
@@ -435,12 +435,12 @@ dpa_send_mt_device_event_handler(uint64_t index) {
     } else {
         while (!is_stop) {
 #if ONLY_SEND
-            send_packet_dpa(dtctx, dev_ctx);
+            send_packet_dpa(dev_ctx);
 #else
             // if (dev_ctx->credits) {
-            //     send_packet_dpa(dtctx, dev_ctx);
+            //     send_packet_dpa(dev_ctx);
             // }
-            send_packet_dpa(dtctx, dev_ctx);
+            send_packet_dpa(dev_ctx);
             while (flexio_dev_cqe_get_owner(dev_ctx->rqcq_ctx.cqe) != dev_ctx->rqcq_ctx.cq_hw_owner_bit) {
                 receive_packet_on_dpa(dev_ctx);
                 step_rq(&dev_ctx->rq_ctx);
