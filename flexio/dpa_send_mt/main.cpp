@@ -87,7 +87,8 @@ int main(int argc, char **argv) {
             // config.tx_flow_root_rule->create_dr_rule(global_tx_flow_root_table, &matcher);
             ;
         } else {
-            (void)global_tx_flow_root_table;
+            // (void)global_tx_flow_root_table;
+            ;
         }
         // config.tx_flow_rule->create_dr_rule(global_tx_flow_table, &matcher);
         // matcher.clear();
