@@ -11,7 +11,9 @@ extern "C"
     extern struct flexio_app *dpa_send_mt_device;
 }
 
-#define TARGET_MAC 0x020101010101
+// #define TARGET_MAC 0x020101010101
+#define TARGET_MAC 0x8c913adfc99e
+
 
 DECLARE_string(device_name);
 
