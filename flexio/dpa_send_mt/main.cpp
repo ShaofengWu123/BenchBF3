@@ -15,8 +15,10 @@ signal_handler(int signum) {
     }
 }
 
-bool rq_buffer_on_host = true;
-bool sq_buffer_on_host = true;
+// bool rq_buffer_on_host = true;
+// bool sq_buffer_on_host = true;
+bool rq_buffer_on_host = false;
+bool sq_buffer_on_host = false;
 // 正常情况下不应该这么使用，这么使用会导致收到其他的包覆盖了要发送的包，或者存在其他影响
 // 但是这里我们设置了奇怪的源MAC地址，所以不会收到其他包，因此才可以使用tx_shared_rx_buffer
 bool tx_shared_rx_buffer = true;
