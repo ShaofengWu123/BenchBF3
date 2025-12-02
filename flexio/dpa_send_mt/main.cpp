@@ -73,23 +73,24 @@ int main(int argc, char **argv) {
 
         Assert(flexio_process_call(global_ctx->get_process(), &dpa_send_mt_device_init, &rpc_ret_val,
             dev_config_data) == FLEXIO_STATUS_SUCCESS);
-        config.rx_flow_rule = new FLEX::dr_flow_rule();
-        config.rx_flow_rule->add_dest_devx_tir(config.rq->get_inner_ptr());
-        matcher.set_dst_mac(TARGET_MAC + i + FLAGS_begin_thread);
-        config.rx_flow_rule->create_dr_rule(global_rx_flow_table, &matcher);
-        matcher.clear();
-        config.tx_flow_rule = new FLEX::dr_flow_rule();
-        config.tx_flow_root_rule = new FLEX::dr_flow_rule();
-        config.tx_flow_root_rule->add_dest_table(global_tx_flow_table->dr_table);
-        config.tx_flow_rule->add_dest_vport(global_tx_dr->get_inner_ptr(), 0xFFFF);
-        matcher.set_src_mac(TARGET_MAC + i + FLAGS_begin_thread);
+        // config.rx_flow_rule = new FLEX::dr_flow_rule();
+        // config.rx_flow_rule->add_dest_devx_tir(config.rq->get_inner_ptr());
+        // matcher.set_dst_mac(TARGET_MAC + i + FLAGS_begin_thread);
+        // config.rx_flow_rule->create_dr_rule(global_rx_flow_table, &matcher);
+        // matcher.clear();
+        // config.tx_flow_rule = new FLEX::dr_flow_rule();
+        // config.tx_flow_root_rule = new FLEX::dr_flow_rule();
+        // config.tx_flow_root_rule->add_dest_table(global_tx_flow_table->dr_table);
+        // config.tx_flow_rule->add_dest_vport(global_tx_dr->get_inner_ptr(), 0xFFFF);
+        // matcher.set_src_mac(TARGET_MAC + i + FLAGS_begin_thread);
         if (!nic_mode) {
-            config.tx_flow_root_rule->create_dr_rule(global_tx_flow_root_table, &matcher);
+            // config.tx_flow_root_rule->create_dr_rule(global_tx_flow_root_table, &matcher);
+            ;
         } else {
             (void)global_tx_flow_root_table;
         }
-        config.tx_flow_rule->create_dr_rule(global_tx_flow_table, &matcher);
-        matcher.clear();
+        // config.tx_flow_rule->create_dr_rule(global_tx_flow_table, &matcher);
+        // matcher.clear();
         global_ctx->event_handler_run(i + FLAGS_begin_thread, i);
         configs.push_back(config);
 
