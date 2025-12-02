@@ -40,17 +40,17 @@ int main(int argc, char **argv) {
     global_ctx->print_init("dpa_send_mt", 0);
 
 
-    auto *global_rx_dr = new FLEX::DR(global_ctx, MLX5DV_DR_DOMAIN_TYPE_NIC_RX);
-    auto *global_tx_dr = new FLEX::DR(global_ctx, MLX5DV_DR_DOMAIN_TYPE_FDB);
-    FLEX::flow_matcher matcher{};
+    // auto *global_rx_dr = new FLEX::DR(global_ctx, MLX5DV_DR_DOMAIN_TYPE_NIC_RX);
+    // auto *global_tx_dr = new FLEX::DR(global_ctx, MLX5DV_DR_DOMAIN_TYPE_FDB);
+    // FLEX::flow_matcher matcher{};
 
-    matcher.set_dst_mac_mask();
-    FLEX::dr_flow_table *global_rx_flow_table = global_rx_dr->create_flow_table(0, 0, &matcher);
-    matcher.clear();
-    matcher.set_src_mac_mask();
-    FLEX::dr_flow_table *global_tx_flow_root_table = global_tx_dr->create_flow_table(0, 0, &matcher);
-    FLEX::dr_flow_table *global_tx_flow_table = global_tx_dr->create_flow_table(1, 0, &matcher);
-    matcher.clear();
+    // matcher.set_dst_mac_mask();
+    // FLEX::dr_flow_table *global_rx_flow_table = global_rx_dr->create_flow_table(0, 0, &matcher);
+    // matcher.clear();
+    // matcher.set_src_mac_mask();
+    // FLEX::dr_flow_table *global_tx_flow_root_table = global_tx_dr->create_flow_table(0, 0, &matcher);
+    // FLEX::dr_flow_table *global_tx_flow_table = global_tx_dr->create_flow_table(1, 0, &matcher);
+    // matcher.clear();
 
     std::vector<dpa_send_mt_config> configs;
     uint64_t rpc_ret_val;
