@@ -178,7 +178,7 @@ static void prepare_packet_host(void *sq_data, size_t thread_index) {
     udp_pkt.ip_hdr.dst_addr = cpu_to_be16(thread_index);
 
     // udp_pkt.udp_hdr.dgram_len = cpu_to_be16(sizeof(uint64_t) * 2 + sizeof(struct udp_hdr));
-    udp_hdr.udp_hdr.dgram_len = cpu_to_be16(data_size + sizeof(struct udp_hdr));
+    udp_pkt.udp_hdr.dgram_len = cpu_to_be16(data_size + sizeof(struct udp_hdr));
     udp_pkt.udp_hdr.src_port = cpu_to_be16(thread_index);
     udp_pkt.udp_hdr.dst_port = cpu_to_be16(thread_index);
 
