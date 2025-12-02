@@ -374,7 +374,8 @@ dpa_send_mt_device_event_handler(uint64_t index) {
         flexio_dev_thread_reschedule();
     }
 
-    flexio_dev_print("thread %ld begin\n", index);
+    flexio_dev_print("thread %ld begin, rq/sq on host: %d/%d,\n", index, dev_ctx->rq_on_host, dev_ctx->sq_on_host);
+    
 
     uint8_t rq_on_host = dev_ctx->rq_on_host;
     uint8_t sq_on_host = dev_ctx->sq_on_host;
