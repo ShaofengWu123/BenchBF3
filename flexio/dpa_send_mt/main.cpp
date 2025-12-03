@@ -107,6 +107,7 @@ int main(int argc, char **argv) {
     DOCA_LOG_INFO("Prepare packet");
     Assert(flexio_process_call(global_ctx->get_process(), &dpa_send_mt_deivce_first_packet, &rpc_ret_val, 0) ==
         FLEXIO_STATUS_SUCCESS);
+    DOCA_LOG_INFO("RPC call finished");
 
     while (!force_quit)
         sleep(1);
