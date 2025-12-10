@@ -14,7 +14,7 @@ set(app_dev_build_dir ${CMAKE_LIBRARY_OUTPUT_DIRECTORY})
 set(program_lib_include_dir -I${CMAKE_SOURCE_DIR}/wrapper_flexio)
 set(program_user_lib -lflexio_dev)
 # don't use link it
-set(program_user_lib)
+# set(program_user_lib)
 set(dpacc_build_script ${CMAKE_SOURCE_DIR}/build_dpacc_samples.sh)
 
 add_executable(${SAMPLE_NAME} ./main.cpp ./dpa_send_mt.cpp ${UTILSOURCES} ${APP_ADDITIONAL_SOURCES})
