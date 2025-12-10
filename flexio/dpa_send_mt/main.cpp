@@ -59,7 +59,7 @@ int main(int argc, char **argv) {
     for (size_t i = 0; i < FLAGS_g_thread_num; i++) {
         dpa_send_mt_config config{};
         temp = global_ctx->create_event_handler(dpa_send_mt_device_event_handler);
-        event_handlers.push_back(temp)
+        event_handlers.push_back(temp);
         config.rq_cq = new FLEX::CQ(true, LOG_CQ_RING_DEPTH, global_ctx, i);
         config.sq_cq = new FLEX::CQ(false, LOG_CQ_RING_DEPTH, global_ctx, i);
         config.rq = new FLEX::RQ(LOG_RQ_RING_DEPTH, LOG_WQ_DATA_ENTRY_BSIZE, config.rq_cq->get_cq_num(), global_ctx, rq_buffer_on_host);
@@ -116,11 +116,11 @@ int main(int argc, char **argv) {
 
     // Call the activation RPC for each thread
     uint32_t activation_id;
-    for (int i = 0; i < FLAGS_g_thread_num; i++) {
-        DOCA_LOG_INFO("Activating thread %d", (int)(i + FLAGS_begin_thread));
+    for (size_t i = 0; i < FLAGS_g_thread_num; i++) {
+        DOCA_LOG_INFO("Activating thread %d", static_cast<int>(i + FLAGS_begin_thread));
         // Retrieve the activation ID for the event handler
         activation_id = flexio_event_handler_get_activation_id(event_handlers[i]);
-        Assert(flexio_process_call(global_ctx->get_process(), &dpa_send_mt_activate_handler, &rpc_ret_val, (uint64_t)activation_id) == FLEXIO_STATUS_SUCCESS);
+        Assert(flexio_process_call(global_ctx->get_process(), &dpa_send_mt_activate_handler, &rpc_ret_val, static_cast<uint64_t>(activation_id)) == FLEXIO_STATUS_SUCCESS);
     }
     DOCA_LOG_INFO("Activation finished");
 
