@@ -12,7 +12,7 @@ list(APPEND app_dev_source_file ${CMAKE_SOURCE_DIR}/wrapper_flexio/wrapper_flexi
 
 set(app_dev_build_dir ${CMAKE_LIBRARY_OUTPUT_DIRECTORY})
 set(program_lib_include_dir -I${CMAKE_SOURCE_DIR}/wrapper_flexio)
-#set(program_user_lib -lflexio_dev)
+set(program_user_lib -lflexio_dev)
 # don't use link it
 set(program_user_lib)
 set(dpacc_build_script ${CMAKE_SOURCE_DIR}/build_dpacc_samples.sh)
