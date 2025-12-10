@@ -95,6 +95,11 @@ int main(int argc, char **argv) {
         global_ctx->event_handler_run(i + FLAGS_begin_thread, i);
         configs.push_back(config);
 
+        // Retrieve the activation ID for the event handler
+        uint32_t activation_id = flexio_event_handler_get_activation_id(event_handler);
+        Assert(activation_id != UINT32_MAX);
+
+        flexio_dev_event_handler_activate(activation_id);
     }
 
     signal(SIGINT, signal_handler);
