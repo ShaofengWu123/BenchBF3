@@ -54,9 +54,12 @@ int main(int argc, char **argv) {
 
     std::vector<dpa_send_mt_config> configs;
     uint64_t rpc_ret_val;
+    std::vector<::flexio_event_handler *> event_handlers{};
+    flexio_event_handler *temp;
     for (size_t i = 0; i < FLAGS_g_thread_num; i++) {
         dpa_send_mt_config config{};
-        global_ctx->create_event_handler(dpa_send_mt_device_event_handler);
+        temp = global_ctx->create_event_handler(dpa_send_mt_device_event_handler);
+        event_handlers.push_back(temp)
         config.rq_cq = new FLEX::CQ(true, LOG_CQ_RING_DEPTH, global_ctx, i);
         config.sq_cq = new FLEX::CQ(false, LOG_CQ_RING_DEPTH, global_ctx, i);
         config.rq = new FLEX::RQ(LOG_RQ_RING_DEPTH, LOG_WQ_DATA_ENTRY_BSIZE, config.rq_cq->get_cq_num(), global_ctx, rq_buffer_on_host);
@@ -95,7 +98,7 @@ int main(int argc, char **argv) {
         global_ctx->event_handler_run(i + FLAGS_begin_thread, i);
         configs.push_back(config);
 
-        global_ctx->event_handler_activate(i);
+        // global_ctx->event_handler_activate(i);
 
     }
 
@@ -106,10 +109,18 @@ int main(int argc, char **argv) {
     /* Add an additional new line for output readability */
     DOCA_LOG_INFO("Press Ctrl+C to terminate");
     sleep(1);
-    DOCA_LOG_INFO("Prepare packet");
-    Assert(flexio_process_call(global_ctx->get_process(), &dpa_send_mt_deivce_first_packet, &rpc_ret_val, 0) ==
-        FLEXIO_STATUS_SUCCESS);
-    DOCA_LOG_INFO("RPC call finished");
+    // DOCA_LOG_INFO("Prepare packet");
+    // Assert(flexio_process_call(global_ctx->get_process(), &dpa_send_mt_deivce_first_packet, &rpc_ret_val, 0) ==
+    //     FLEXIO_STATUS_SUCCESS);
+    //DOCA_LOG_INFO("RPC call finished");
+
+    // Call the activation RPC for each thread
+    for (size_t i = 0; i < FLAGS_g_thread_num; i++) {
+        DOCA_LOG_INFO("Activating thread %d", i + FLAGS_begin_thread);
+        Assert(flexio_process_call(global_ctx->get_process(), &dpa_send_mt_activate_handler, &rpc_ret_val, 
+            event_handlers[i]) == FLEXIO_STATUS_SUCCESS);
+    }
+    DOCA_LOG_INFO("Activation finished");
 
     while (!force_quit)
         sleep(1);

@@ -86,7 +86,7 @@ namespace FLEX {
 
         void event_handler_run(flexio_uintptr_t ddata, size_t index = 0);
 
-        void event_handler_activate(size_t index = 0);
+        // void event_handler_activate(size_t index = 0);
 
         void allocate_dbr(flexio_uintptr_t *dbr_daddr);
 

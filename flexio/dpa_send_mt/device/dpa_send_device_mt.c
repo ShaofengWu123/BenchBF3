@@ -18,6 +18,7 @@
 flexio_dev_rpc_handler_t dpa_send_mt_device_init;            /* Device initialization function */
 flexio_dev_rpc_handler_t dpa_send_mt_deivce_first_packet;    /* First packet function */
 flexio_dev_rpc_handler_t dpa_send_mt_stop;
+flexio_dev_rpc_handler_t dpa_send_mt_activate_handler;
 flexio_dev_event_handler_t dpa_send_mt_device_event_handler; /* Event handler function */
 
 #define hdr_size 42
@@ -363,6 +364,19 @@ __dpa_rpc__ uint64_t dpa_send_mt_stop(uint64_t __attribute__((__unused__)) dummy
     is_stop = 1;
     return 0;
 }
+
+// shaofeng: test function for triggering the handler
+__dpa_rpc__ uint64_t dpa_send_mt_activate_handler(flexio_event_handler* event_handler) {
+    // Retrieve the activation ID for the event handler
+    uint32_t activation_id = flexio_event_handler_get_activation_id(event_handler);
+    Assert(activation_id != UINT32_MAX);
+    
+    // Activate the event handler on the DPA
+    flexio_dev_event_handler_activate(activation_id);
+    
+    return 0;
+}
+
 /*
  * This function is called when a new packet is received to RQ's CQ.
  * Upon receiving a packet, the function will iterate over all received packets and process them.

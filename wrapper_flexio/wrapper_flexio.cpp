@@ -184,14 +184,14 @@ namespace FLEX {
         Assert(ret == FLEXIO_STATUS_SUCCESS);
     }
 
-    void Context::event_handler_activate(size_t index) {
-        Assert(index < event_handler_vec.size());
-        // Retrieve the activation ID for the event handler
-        uint32_t activation_id = flexio_event_handler_get_activation_id(event_handler_vec[index]);
-        Assert(activation_id != UINT32_MAX);
+    // void Context::event_handler_activate(size_t index) {
+    //     Assert(index < event_handler_vec.size());
+    //     // Retrieve the activation ID for the event handler
+    //     uint32_t activation_id = flexio_event_handler_get_activation_id(event_handler_vec[index]);
+    //     Assert(activation_id != UINT32_MAX);
 
-        flexio_dev_event_handler_activate(activation_id);
-    }
+    //     flexio_dev_event_handler_activate(activation_id);
+    // }
 
 
     void Context::allocate_dbr(flexio_uintptr_t *dbr_daddr) {
