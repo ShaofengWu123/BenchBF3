@@ -120,7 +120,7 @@ int main(int argc, char **argv) {
         DOCA_LOG_INFO("Activating thread %d", i + FLAGS_begin_thread);
         // Retrieve the activation ID for the event handler
         activation_id = flexio_event_handler_get_activation_id(event_handlers[i]);
-        Assert(flexio_process_call(global_ctx->get_process(), &dpa_send_mt_activate_handler, &rpc_ret_val, activation_id) == FLEXIO_STATUS_SUCCESS);
+        Assert(flexio_process_call(global_ctx->get_process(), &dpa_send_mt_activate_handler, &rpc_ret_val, (uint64_t)activation_id) == FLEXIO_STATUS_SUCCESS);
     }
     DOCA_LOG_INFO("Activation finished");
 

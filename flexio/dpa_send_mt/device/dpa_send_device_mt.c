@@ -366,7 +366,8 @@ __dpa_rpc__ uint64_t dpa_send_mt_stop(uint64_t __attribute__((__unused__)) dummy
 }
 
 // shaofeng: test function for triggering the handler
-__dpa_rpc__ uint64_t dpa_send_mt_activate_handler(uint32_t activation_id) {
+__dpa_rpc__ uint64_t dpa_send_mt_activate_handler(uint64_t args) {
+    uint32_t activation_id = (uint32_t)arg;
     Assert(activation_id != UINT32_MAX);
     
     // Activate the event handler on the DPA
