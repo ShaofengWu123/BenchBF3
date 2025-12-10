@@ -478,6 +478,6 @@ dpa_send_mt_device_event_handler(uint64_t index) {
     flexio_dev_print("thread %ld end\n", index);
 
     __dpa_thread_fence(__DPA_MEMORY, __DPA_W, __DPA_W);
-    // flexio_dev_cq_arm(dev_ctx->rqcq_ctx.cq_idx, dev_ctx->rqcq_ctx.cq_number);
+    flexio_dev_cq_arm(dev_ctx->rqcq_ctx.cq_idx, dev_ctx->rqcq_ctx.cq_number);
     flexio_dev_thread_reschedule();
 }
