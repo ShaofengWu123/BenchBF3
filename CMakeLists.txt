@@ -48,7 +48,7 @@ pkg_check_modules(DOCADPA IMPORTED_TARGET doca-dpa)
 pkg_check_modules(DOCACOMMON IMPORTED_TARGET doca-common)
 pkg_check_modules(LIBDPDK IMPORTED_TARGET libdpdk)
 pkg_check_modules(LIBFLEXIO IMPORTED_TARGET libflexio)
-pkg_check_modules(LIBFLEXIODEV IMPORTED_TARGET libflexio-dev)
+# pkg_check_modules(LIBFLEXIODEV IMPORTED_TARGET libflexio-dev)
 
 # set(Protobuf_USE_STATIC_LIBS ON)
 # find_package(Protobuf REQUIRED)
@@ -79,12 +79,12 @@ else ()
     return()
 endif ()
 
-if (LIBFLEXIODEV_FOUND)
-    message(STATUS "LIBFLEXIODEV found")
-else ()
-    message(FATAL_ERROR "LIBFLEXIODEV not found")
-    return()
-endif ()
+# if (LIBFLEXIODEV_FOUND)
+#     message(STATUS "LIBFLEXIODEV found")
+# else ()
+#     message(FATAL_ERROR "LIBFLEXIODEV not found")
+#     return()
+# endif ()
 
 
 #include: utils
@@ -143,7 +143,7 @@ set(UTILSOURCES
 # file(GLOB WRAPPERSOURCES ${CMAKE_SOURCE_DIR}/wrapper/*.cpp)
 # list(APPEND UTILSOURCES ${WRAPPERSOURCES})
 
-set(LIBRARIES ${LIBRARIES} PkgConfig::DOCACOMMON PkgConfig::DOCADPA PkgConfig::LIBDPDK PkgConfig::LIBFLEXIO PkgConfig::LIBFLEXIODEV nlohmann_json::nlohmann_json ${Protobuf_LITE_LIBRARIES} gflags numa hdr_histogram_static z lz4)
+set(LIBRARIES ${LIBRARIES} PkgConfig::DOCACOMMON PkgConfig::DOCADPA PkgConfig::LIBDPDK PkgConfig::LIBFLEXIO nlohmann_json::nlohmann_json ${Protobuf_LITE_LIBRARIES} gflags numa hdr_histogram_static z lz4)
 ## used for cache_invalid
 set(LIBRARIES ${LIBRARIES} ibverbs mlx5)
 
