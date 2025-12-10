@@ -5,6 +5,7 @@
 #include <infiniband/verbs.h>
 #include <infiniband/mlx5_api.h>
 #include <libflexio/flexio.h>
+#include <libflexio/flexio_dev.h>
 
 #include "common.hpp"
 #include "common_cross.h"
@@ -84,7 +85,7 @@ namespace FLEX {
         flexio_event_handler *create_event_handler(flexio_func_t func);
 
         void event_handler_run(flexio_uintptr_t ddata, size_t index = 0);
-        
+
         void event_handler_activate(size_t index = 0);
 
         void allocate_dbr(flexio_uintptr_t *dbr_daddr);
