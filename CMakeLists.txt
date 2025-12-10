@@ -147,6 +147,8 @@ set(LIBRARIES ${LIBRARIES} PkgConfig::DOCACOMMON PkgConfig::DOCADPA PkgConfig::L
 ## used for cache_invalid
 set(LIBRARIES ${LIBRARIES} ibverbs mlx5)
 
+set(LIBRARIES ${LIBRARIES} flexio_dev)
+
 add_subdirectory(${CMAKE_SOURCE_DIR}/third_party/json)
 add_subdirectory(${CMAKE_SOURCE_DIR}/third_party/HdrHistogram)
 
