@@ -5,7 +5,7 @@
 #include <infiniband/verbs.h>
 #include <infiniband/mlx5_api.h>
 #include <libflexio/flexio.h>
-#include <libflexio/flexio_dev.h>
+#include <libflexio-dev/flexio_dev.h>
 
 #include "common.hpp"
 #include "common_cross.h"
