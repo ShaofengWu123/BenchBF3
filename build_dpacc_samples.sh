@@ -11,7 +11,7 @@ DOCA_TOOLS="/opt/mellanox/doca/tools"
 DPACC="${DOCA_TOOLS}/dpacc"
 
 # CC flags
-DEV_CC_FLAGS="-Wall,-Wextra,-Wpedantic,-Werror,-O3,-DE_MODE_LE,-ffreestanding,-mabi=lp64,-mno-relax,-mcmodel=medany,-nostdlib,-Wdouble-promotion,-Wno-deprecated-declarations"
+DEV_CC_FLAGS="-DFLEXIO_DEV_ALLOW_EXPERIMENTAL_API,-Wall,-Wextra,-Wpedantic,-Werror,-O3,-DE_MODE_LE,-ffreestanding,-mabi=lp64,-mno-relax,-mcmodel=medany,-nostdlib,-Wdouble-promotion,-Wno-deprecated-declarations"
 DEV_INC_DIR="-I/opt/mellanox/flexio/include,-I/opt/mellanox/doca/include"
 DEVICE_OPTIONS="${DEV_CC_FLAGS},${DEV_INC_DIR},${DEV_USER_INC_DIR}"
 
