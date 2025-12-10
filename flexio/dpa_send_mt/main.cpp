@@ -116,8 +116,8 @@ int main(int argc, char **argv) {
 
     // Call the activation RPC for each thread
     uint32_t activation_id;
-    for (size_t i = 0; i < FLAGS_g_thread_num; i++) {
-        DOCA_LOG_INFO("Activating thread %d", i + FLAGS_begin_thread);
+    for (int i = 0; i < FLAGS_g_thread_num; i++) {
+        DOCA_LOG_INFO("Activating thread %d", (int)(i + FLAGS_begin_thread));
         // Retrieve the activation ID for the event handler
         activation_id = flexio_event_handler_get_activation_id(event_handlers[i]);
         Assert(flexio_process_call(global_ctx->get_process(), &dpa_send_mt_activate_handler, &rpc_ret_val, (uint64_t)activation_id) == FLEXIO_STATUS_SUCCESS);
