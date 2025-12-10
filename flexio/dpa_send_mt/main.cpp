@@ -55,7 +55,7 @@ int main(int argc, char **argv) {
     std::vector<dpa_send_mt_config> configs;
     uint64_t rpc_ret_val;
     std::vector<::flexio_event_handler *> event_handlers{};
-    flexio_event_handler *temp;
+    struct flexio_event_handler *temp;
     for (size_t i = 0; i < FLAGS_g_thread_num; i++) {
         dpa_send_mt_config config{};
         temp = global_ctx->create_event_handler(dpa_send_mt_device_event_handler);

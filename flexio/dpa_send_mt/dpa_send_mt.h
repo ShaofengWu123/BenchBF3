@@ -8,6 +8,7 @@ extern "C"
     flexio_func_t dpa_send_mt_device_init;
     flexio_func_t dpa_send_mt_deivce_first_packet;
     flexio_func_t dpa_send_mt_stop;
+    flexio_func_t dpa_send_mt_activate_handler;
     extern struct flexio_app *dpa_send_mt_device;
 }
 

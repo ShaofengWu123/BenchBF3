@@ -366,7 +366,7 @@ __dpa_rpc__ uint64_t dpa_send_mt_stop(uint64_t __attribute__((__unused__)) dummy
 }
 
 // shaofeng: test function for triggering the handler
-__dpa_rpc__ uint64_t dpa_send_mt_activate_handler(flexio_event_handler* event_handler) {
+__dpa_rpc__ uint64_t dpa_send_mt_activate_handler(struct flexio_event_handler *event_handler) {
     // Retrieve the activation ID for the event handler
     uint32_t activation_id = flexio_event_handler_get_activation_id(event_handler);
     Assert(activation_id != UINT32_MAX);
