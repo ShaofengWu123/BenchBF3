@@ -23,8 +23,8 @@ flexio_dev_event_handler_t dpa_send_mt_device_event_handler; /* Event handler fu
 
 #define hdr_size 42
 // #define data_size 22
-// #define data_size 86
-#define data_size 214
+#define data_size 86
+// #define data_size 214
 #define pkt_size (hdr_size + data_size)
 
 #define MAX_THREADS 190
