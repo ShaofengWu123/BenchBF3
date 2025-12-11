@@ -109,10 +109,10 @@ int main(int argc, char **argv) {
     /* Add an additional new line for output readability */
     DOCA_LOG_INFO("Press Ctrl+C to terminate");
     sleep(1);
-    // DOCA_LOG_INFO("Prepare packet");
-    // Assert(flexio_process_call(global_ctx->get_process(), &dpa_send_mt_deivce_first_packet, &rpc_ret_val, 0) ==
-    //     FLEXIO_STATUS_SUCCESS);
-    //DOCA_LOG_INFO("RPC call finished");
+    DOCA_LOG_INFO("Prepare packet");
+    Assert(flexio_process_call(global_ctx->get_process(), &dpa_send_mt_deivce_first_packet, &rpc_ret_val, 0) ==
+        FLEXIO_STATUS_SUCCESS);
+    DOCA_LOG_INFO("RPC call finished");
 
     // Call the activation RPC for each thread
     uint32_t activation_id;
